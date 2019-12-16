@@ -1,4 +1,5 @@
 package bgu.spl.mics.application.passiveObjects;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -10,8 +11,16 @@ import java.util.Map;
  */
 public class Squad {
 
+	//____________fields_____________
 	private Map<String, Agent> agents;
 
+
+	//_________constructors__________
+	public Squad (){
+		
+	}
+
+	//____________methods____________
 	/**
 	 * Retrieves the single instance of this class.
 	 */
@@ -27,14 +36,20 @@ public class Squad {
 	 * 						of the squad.
 	 */
 	public void load (Agent[] agents) {
-		// TODO Implement this
+		synchronized (this.agents){
+			for (Agent a: agents) {
+				this.agents.put(a.getName(),a);
+			}
+		}
 	}
 
 	/**
 	 * Releases agents.
 	 */
 	public void releaseAgents(List<String> serials){
-		// TODO Implement this
+		for (String s : serials){
+			this.agents.get(s).release();
+		}
 	}
 
 	/**
@@ -42,7 +57,14 @@ public class Squad {
 	 * @param time   milliseconds to sleep
 	 */
 	public void sendAgents(List<String> serials, int time){
-		// TODO Implement this
+		try {
+			Thread.sleep(time);
+		} catch(InterruptedException ex){
+			Thread.currentThread().interrupt();
+		}
+		for (String s: serials) {
+			this.agents.get(s).release();
+		}
 	}
 
 	/**
@@ -50,10 +72,22 @@ public class Squad {
 	 * @param serials   the serial numbers of the agents
 	 * @return ‘false’ if an agent of serialNumber ‘serial’ is missing, and ‘true’ otherwise
 	 */
-	public boolean getAgents(List<String> serials){
-		// TODO Implement this
-		return false;
+	public boolean getAgents(List<String> serials) throws InterruptedException {
+		serials.sort(String::compareTo);
+		for (String s: serials) {
+			if (!agents.containsKey(s)){
+				return false;
+			}
+			if (!agents.get(s).isAvailable()) {
+				do {
+					Thread.currentThread().wait();
+				} while (!agents.get(s).isAvailable());
+			}
+			agents.get(s).acquire();
+		}
+		return true;
 	}
+
 
     /**
      * gets the agents names
@@ -61,8 +95,10 @@ public class Squad {
      * @return a list of the names of the agents with the specified serials.
      */
     public List<String> getAgentsNames(List<String> serials){
-        // TODO Implement this
-	    return null;
+    	List <String> out = new ArrayList<String> ();
+		for (String s: serials) {
+			out.add(this.agents.get(s).getName());
+		}
+		return out;
     }
-
 }
