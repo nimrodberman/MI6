@@ -1,5 +1,6 @@
 package bgu.spl.mics.application.passiveObjects;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -12,12 +13,19 @@ import java.util.List;
  */
 public class Inventory {
 	private List<String> gadgets;
+	private static Inventory instance = null;
+
 	/**
      * Retrieves the single instance of this class.
      */
+	private Inventory(){
+	}
+
 	public static Inventory getInstance() {
-		//TODO: Implement this
-		return null;
+		if(instance == null) {
+			instance = new Inventory();
+		}
+		return instance;
 	}
 
 	/**
@@ -28,7 +36,9 @@ public class Inventory {
      * 						of the inventory.
      */
 	public void load (String[] inventory) {
-		//TODO: Implement this
+		synchronized (gadgets) {
+			Collections.addAll(gadgets, inventory);
+		}
 	}
 	
 	/**
@@ -38,8 +48,15 @@ public class Inventory {
      * @return 	‘false’ if the gadget is missing, and ‘true’ otherwise
      */
 	public boolean getItem(String gadget){
-		//TODO: Implement this
-		return true;
+		synchronized (gadgets) {
+			// check if item exit if not return false
+			if (!gadgets.contains(gadget)) {
+				return false;
+			}
+			// else remove from list and return true
+			gadgets.remove(gadget);
+			return true;
+		}
 	}
 
 	/**
@@ -50,6 +67,7 @@ public class Inventory {
 	 * This method is called by the main method in order to generate the output.
 	 */
 	public void printToFile(String filename){
-		//TODO: Implement this
+		PrintFile output = new PrintFile(filename, gadgets);
+		output.print();
 	}
 }
