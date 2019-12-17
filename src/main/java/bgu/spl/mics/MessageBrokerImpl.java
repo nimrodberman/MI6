@@ -152,6 +152,7 @@ public class MessageBrokerImpl implements MessageBroker {
 				// collect all topics
 				for (roundRubin r : topics.values()){
 					if (r.getList().contains(m)){
+						r.decrease(r.getList().indexOf(m));
 						r.getList().remove(m);
 					}
 				}

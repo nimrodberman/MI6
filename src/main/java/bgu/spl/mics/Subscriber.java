@@ -17,7 +17,6 @@ package bgu.spl.mics;
  */
 public abstract class Subscriber extends RunnableSubPub {
     private boolean terminated = false;
-    private SimplePublisher simplePublisher;
 
     /**
      * @param name the Subscriber name (used mainly for debugging purposes -
@@ -25,7 +24,7 @@ public abstract class Subscriber extends RunnableSubPub {
      */
     public Subscriber(String name) {
         super(name);
-        simplePublisher = MessageBrokerImpl.getInstance();
+        //simplePublisher = MessageBrokerImpl.getInstance();
     }
 
     /**
@@ -50,7 +49,7 @@ public abstract class Subscriber extends RunnableSubPub {
      *                 queue.
      */
     protected final <T, E extends Event<T>> void subscribeEvent(Class<E> type, Callback<E> callback) {
-        this.simplePublisher.sendEvent(type);
+        //this.simplePublisher.sendEvent(type);
     }
 
     /**

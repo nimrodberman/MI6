@@ -41,5 +41,11 @@ public class roundRubin {
         this.i.set(0);
     }
 
+    public void decrease(int m) {
+        if (m < i.get()){
+            i.decrementAndGet();
+        }
+    }
+
 
 }
