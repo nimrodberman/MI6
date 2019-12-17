@@ -1,5 +1,6 @@
 package bgu.spl.mics.application.passiveObjects;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -17,6 +18,10 @@ public class MissionInfo {
 	private int timeExpired;
 	private int duration;
 	List<String> serialAgentsNumbers;
+
+	public MissionInfo(){
+		serialAgentsNumbers = new LinkedList<String>();
+	}
 
 	/**
      * Sets the name of the mission.
