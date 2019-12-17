@@ -1,0 +1,13 @@
+- making a singletone - explain the threadssafe option and how it aborting creation of new instances: implemnt on
+messegebroker, diary, squad, inventory, timeservice
+
+subscriber - ??
+
+increment in messegebroker at sendevent - is it threadsafe?
+
+how simplepublisher comunucate with messegebroker?
+
+in complete in messegebroker - do i need to add an option that the event is not exits?
+
+in messegebroker methods of adding and broadcasting - do i need to create new user if it not exist in the list like guy work?
+
