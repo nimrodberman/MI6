@@ -16,8 +16,7 @@ public class Squad {
 
 
 	//_________constructors__________
-	public Squad (){
-		
+	private Squad (){
 	}
 
 	//____________methods____________
@@ -25,8 +24,7 @@ public class Squad {
 	 * Retrieves the single instance of this class.
 	 */
 	public static Squad getInstance() {
-		//TODO: Implement this
-		return null;
+		return Squad.getInstance();
 	}
 
 	/**
@@ -50,6 +48,7 @@ public class Squad {
 		for (String s : serials){
 			this.agents.get(s).release();
 		}
+		notifyAll();
 	}
 
 	/**
