@@ -1,6 +1,7 @@
 package bgu.spl.mics.application.passiveObjects;
 
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -20,7 +21,10 @@ public class Report {
 	int QTime;
 	int timeCreated;
 
-
+	public Report(){
+		agentsSerialNumbers = new LinkedList<String>();
+		agentsNames = new LinkedList<String>();
+	}
 	/**
      * Retrieves the mission name.
      */

@@ -50,6 +50,7 @@ public class Squad {
 		for (String s : serials){
 			this.agents.get(s).release();
 		}
+		notifyAll();
 	}
 
 	/**
