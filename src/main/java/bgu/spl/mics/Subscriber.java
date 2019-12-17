@@ -17,6 +17,7 @@ package bgu.spl.mics;
  */
 public abstract class Subscriber extends RunnableSubPub {
     private boolean terminated = false;
+    // add a fields of simplepublisher
 
     /**
      * @param name the Subscriber name (used mainly for debugging purposes -
