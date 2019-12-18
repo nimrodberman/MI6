@@ -17,5 +17,9 @@ in the subscriber - sendbroad or event. is it threadsafe to check the condition 
 
 in messegebroker -increase cuncourncy with syncronize only specific topics
 
+intellegence from json - does there is only one intellegence
 
+Does we need to syncroiezd the intellegence callbacks?
+
+Simplepublisher in intellejence is interupting the json reading???
 

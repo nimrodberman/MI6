@@ -11,15 +11,19 @@ import java.util.List;
  * You may add ONLY private fields and methods to this class.
  */
 public class Report {
-	String MissionName;
-	int M;
-	int MP;
-	List<String> agentsSerialNumbers;
-	List<String> agentsNames;
-	String GadgetName;
-	int timeIssued;
-	int QTime;
-	int timeCreated;
+	private String MissionName;
+	private int M;
+	private int MP;
+	private List<String> agentsSerialNumbers;
+	private List<String> agentsNames;
+	private String GadgetName;
+	private int timeIssued;
+	private int QTime;
+	private int timeCreated;
+	private boolean gadetIsExist;
+	private boolean agentsExists;
+
+
 
 	public Report(){
 		agentsSerialNumbers = new LinkedList<String>();
@@ -160,5 +164,21 @@ public class Report {
 	 */
 	public void setTimeCreated(int TimeCreated) {
 		timeCreated = TimeCreated;
+	}
+
+	public void setGadetIsExist(boolean gadetIsExist) {
+		this.gadetIsExist = gadetIsExist;
+	}
+
+	public boolean isGadetIsExist() {
+		return gadetIsExist;
+	}
+
+	public boolean isAgentsExists() {
+		return agentsExists;
+	}
+
+	public void setAgentsExists(boolean agentsExists) {
+		this.agentsExists = agentsExists;
 	}
 }
