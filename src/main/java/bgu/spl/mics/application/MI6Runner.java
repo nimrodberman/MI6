@@ -1,6 +1,8 @@
 package bgu.spl.mics.application;
 import bgu.spl.mics.application.passiveObjects.*;
 import com.google.gson.Gson;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonStreamParser;
@@ -26,9 +28,17 @@ public class MI6Runner {
 
             Inventory inventory = Inventory.getInstance();
             Squad squad = Squad.getInstance();
+
             // upload passive objects
             inventory.load(file.getInventory());
-            squad.load(file.getSquad());  // null pointer error
+            squad.load(file.getSquad());
+
+            // upload active objects
+            ExecutorService e = Executors.newFixedThreadPool(5);
+
+
+
+
             reader.close();
         }
         catch (Exception e) {
