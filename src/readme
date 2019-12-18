@@ -13,5 +13,9 @@ in messegebroker methods of adding and broadcasting - do i need to create new us
 
 timetick - how the system works?
 
+in the subscriber - sendbroad or event. is it threadsafe to check the condition ?
+
+in messegebroker -increase cuncourncy with syncronize only specific topics
+
 
 
