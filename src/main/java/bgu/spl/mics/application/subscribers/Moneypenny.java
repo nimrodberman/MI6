@@ -1,6 +1,7 @@
 package bgu.spl.mics.application.subscribers;
 
-import bgu.spl.mics.Subscriber;
+import bgu.spl.mics.*;
+import bgu.spl.mics.application.passiveObjects.Report;
 import bgu.spl.mics.application.passiveObjects.Squad;
 
 /**
@@ -25,7 +26,45 @@ public class Moneypenny extends Subscriber {
 	protected void initialize() {
 
 
-		
+		Callback<AgentsAvailableEvent> agentavailable = (AgentsAvailableEvent t) -> {
+			// update the report
+			Report report = t.getReport();
+			report.setMoneypenny(serial);
+			// set the serial number of each agent
+			report.setAgentsNames(squad.getAgentsNames(t.getAgents()));
+
+			//check for agents
+			try{
+				boolean ok = squad.getAgents(t.getAgents());
+				if(ok){
+					report.setAgentsExists(ok);
+					this.complete(t,report);
+				}
+
+				else {
+					report.setAgentsExists(ok);
+					this.complete(t,report);
+				}
+			}
+			catch (InterruptedException e){
+				e.printStackTrace();
+			}
+		};
+
+		Callback<AgentActiveEvent> activeagent = (AgentActiveEvent t) ->{
+			squad.sendAgents(t.getList(),t.getTime());
+			complete(t,null);
+
+		};
+
+		Callback<ReleaseAgentsEvent> realseagents = (ReleaseAgentsEvent t) ->{
+			squad.releaseAgents(t.getList());
+			complete(t,null);
+		};
+
+		this.subscribeEvent(ReleaseAgentsEvent.class, realseagents);
+		this.subscribeEvent(AgentActiveEvent.class, activeagent);
+		this.subscribeEvent(AgentsAvailableEvent.class, agentavailable);
 	}
 
 }

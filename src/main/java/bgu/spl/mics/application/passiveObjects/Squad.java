@@ -52,7 +52,8 @@ public class Squad {
 	 */
 	public void releaseAgents(List<String> serials){
 		for (String s : serials){
-			this.agents.get(s).release();
+			if(this.agents.containsKey(s))
+				this.agents.get(s).release();
 		}
 		notifyAll();
 	}

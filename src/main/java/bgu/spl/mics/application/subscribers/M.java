@@ -1,6 +1,8 @@
 package bgu.spl.mics.application.subscribers;
 
 import bgu.spl.mics.*;
+import bgu.spl.mics.application.passiveObjects.Diary;
+import bgu.spl.mics.application.passiveObjects.Report;
 
 /**
  * M handles ReadyEvent - fills a report and sends agents to mission.
@@ -11,16 +13,51 @@ import bgu.spl.mics.*;
 public class M extends Subscriber {
 	int serial;
 	int time;
+	Diary diary;
 
 	public M(int Serial) {
 		super("M" + Serial);
 		serial = Serial;
+		diary = Diary.getInstance();
 
 	}
 
 	@Override
 	protected void initialize() {
-		this.subscribeEvent(MissionReceivedEvent,MissionHandleCallback);
-		this.subscribeBroadcast(TickBroadcast, TimeCallback);
+
+		Callback<TickBroadcast> timecall = (TickBroadcast t) -> {
+			time = t.getTickNumber();
+		};
+		this.subscribeBroadcast(TickBroadcast.class, timecall);
+
+		Callback<MissionReceivedEvent> missioncall = (MissionReceivedEvent s) ->{
+			diary.incrementTotal();
+			Report report = new Report();
+			report.setTimeCreated(time);
+			report.setM(serial);
+
+			SimplePublisher m_publish = this.getSimplePublisher();
+			Future<Report> future = m_publish.sendEvent(new AgentsAvailableEvent(s.getMissionInfo().getSerialAgentsNumbers(), report));
+
+			// wait until agents are available
+			Report report2 = future.get();
+
+			//get the report from Q
+			Future<Report> future1 = m_publish.sendEvent(new GadgetAvailableEvent(s.getMissionInfo().getGadget(),report2));
+			Report report3 = future1.get();
+
+			// if all conditions are valid send the mission
+			if(report3.isGadetIsExist() && report3.isAgentsExists() && time <= s.getMissionInfo().getTimeExpired()){
+				diary.addReport(report3);
+				Future t = m_publish.sendEvent(new AgentActiveEvent(s.getMissionInfo().getSerialAgentsNumbers(),s.getMissionInfo().getDuration()));
+			}
+
+			else{
+				Future t = m_publish.sendEvent(new ReleaseAgentsEvent(s.getMissionInfo().getSerialAgentsNumbers()));
+			}
+		};
+
+		this.subscribeEvent(MissionReceivedEvent.class, missioncall);
+	}
 
 }
