@@ -34,7 +34,7 @@ public class MI6Runner {
             squad.load(file.getSquad());
 
             // upload active objects
-            ExecutorService e = Executors.newFixedThreadPool(5);
+            //ExecutorService e = Executors.newFixedThreadPool(5);
 
 
 

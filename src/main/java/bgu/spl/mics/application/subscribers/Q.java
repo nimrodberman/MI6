@@ -9,10 +9,11 @@ import bgu.spl.mics.Subscriber;
  * You MAY change constructor signatures and even add new public constructors.
  */
 public class Q extends Subscriber {
+	int serial;
 
-	public Q() {
-		super("Change_This_Name");
-		// TODO Implement this
+	public Q(int Serial) {
+		super("Q" + Serial);
+		serial = Serial;
 	}
 
 	@Override

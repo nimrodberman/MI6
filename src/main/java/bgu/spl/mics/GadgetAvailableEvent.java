@@ -1,6 +1,7 @@
 package bgu.spl.mics;
 
 public class GadgetAvailableEvent implements Event {
+
     private String gadget;
 
     public GadgetAvailableEvent(String gadget) {

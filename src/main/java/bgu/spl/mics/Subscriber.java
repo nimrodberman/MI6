@@ -1,5 +1,7 @@
 package bgu.spl.mics;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * The Subscriber is an abstract class that any subscriber in the system
  * must extend. The abstract Subscriber class is responsible to get and
@@ -16,8 +18,10 @@ package bgu.spl.mics;
  * <p>
  */
 public abstract class Subscriber extends RunnableSubPub {
+    private MessageBroker ms;
     private boolean terminated = false;
-    // add a fields of simplepublisher
+    private ConcurrentHashMap<Class,Callback> callbacks;
+    private SimplePublisher sp;
 
     /**
      * @param name the Subscriber name (used mainly for debugging purposes -
@@ -25,7 +29,9 @@ public abstract class Subscriber extends RunnableSubPub {
      */
     public Subscriber(String name) {
         super(name);
-        //simplePublisher = MessageBrokerImpl.getInstance();
+        ms = MessageBrokerImpl.getInstance();
+        callbacks = new ConcurrentHashMap<>();
+        sp = new SimplePublisher();
     }
 
     /**
@@ -50,7 +56,12 @@ public abstract class Subscriber extends RunnableSubPub {
      *                 queue.
      */
     protected final <T, E extends Event<T>> void subscribeEvent(Class<E> type, Callback<E> callback) {
-        //this.simplePublisher.sendEvent(type);
+        // ask ms to register to a topic
+        ms.subscribeEvent(type,this);
+        //insert the proper callback by type if not exist already
+        if(!callbacks.contains(type)){
+            callbacks.put(type,callback);
+        }
     }
 
     /**
@@ -74,7 +85,12 @@ public abstract class Subscriber extends RunnableSubPub {
      *                 queue.
      */
     protected final <B extends Broadcast> void subscribeBroadcast(Class<B> type, Callback<B> callback) {
-        //TODO: implement this.
+        // ask ms to register to a topic
+        ms.subscribeBroadcast(type,this);
+        //insert the proper callback by type if not exist already
+        if(!callbacks.contains(type)){
+            callbacks.put(type,callback);
+        }
     }
 
     /**
@@ -88,7 +104,7 @@ public abstract class Subscriber extends RunnableSubPub {
      *               {@code e}.
      */
     protected final <T> void complete(Event<T> e, T result) {
-        //TODO: implement this.
+        ms.complete(e,result);
     }
 
     /**
@@ -105,10 +121,16 @@ public abstract class Subscriber extends RunnableSubPub {
      */
     @Override
     public final void run() {
+        ms.register(this);
         initialize();
-        while (!terminated) {
-            System.out.println("NOT IMPLEMENTED!!!"); //TODO: you should delete this line :)
+        while (!terminated) try {
+            Message s = ms.awaitMessage(this);
+            //start the proper callback if exist
+            if(callbacks.contains(s)) {
+                callbacks.get(s).call(s);
+            }
+        } catch (InterruptedException e) {
+            terminate();
         }
     }
-
 }

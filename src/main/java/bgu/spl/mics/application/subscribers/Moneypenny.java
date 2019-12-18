@@ -1,6 +1,7 @@
 package bgu.spl.mics.application.subscribers;
 
 import bgu.spl.mics.Subscriber;
+import bgu.spl.mics.application.passiveObjects.Squad;
 
 /**
  * Only this type of Subscriber can access the squad.
@@ -10,15 +11,20 @@ import bgu.spl.mics.Subscriber;
  * You MAY change constructor signatures and even add new public constructors.
  */
 public class Moneypenny extends Subscriber {
+	int serial;
+	Squad squad;
 
-	public Moneypenny() {
-		super("Change_This_Name");
-		// TODO Implement this
+
+	public Moneypenny(int Serial) {
+		super("MoneyPenny" + Serial);
+		serial = Serial;
+		squad = Squad.getInstance();
 	}
 
 	@Override
 	protected void initialize() {
-		// TODO Implement this
+
+
 		
 	}
 
