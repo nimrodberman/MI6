@@ -133,6 +133,9 @@ public class MessageBrokerImpl implements MessageBroker {
 				}
 			}
 		}
+		else {
+		    f = null;
+        }
 		return f;
 	}
 

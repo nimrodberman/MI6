@@ -11,9 +11,9 @@ import bgu.spl.mics.application.passiveObjects.Report;
  * You MAY change constructor signatures and even add new public constructors.
  */
 public class Q extends Subscriber {
-	int serial;
-	int time;
-	Inventory inventory;
+	private int serial;
+	private int time;
+	private Inventory inventory;
 
 	public Q(int Serial) {
 		super("Q" + Serial);

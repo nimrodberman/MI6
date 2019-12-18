@@ -1,6 +1,12 @@
 package bgu.spl.mics.application;
+import bgu.spl.mics.Subscriber;
 import bgu.spl.mics.application.passiveObjects.*;
+import bgu.spl.mics.application.subscribers.M;
+import bgu.spl.mics.application.subscribers.Moneypenny;
 import com.google.gson.Gson;
+
+
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import com.google.gson.JsonArray;
@@ -33,8 +39,20 @@ public class MI6Runner {
             inventory.load(file.getInventory());
             squad.load(file.getSquad());
 
-            // upload active objects
-            //ExecutorService e = Executors.newFixedThreadPool(5);
+            int m_nubmber = file.getServices().getM();
+            int mp_number = file.getServices().getMp();
+            int intellegence_number = file.getServices().getIntelligences().length;
+            int time = file.getServices().getTime();
+
+
+
+
+
+
+
+
+            System.out.println(file.getServices().getIntelligences()[0].getMissions()[0].getSerialAgentsNumbers());
+
 
 
 

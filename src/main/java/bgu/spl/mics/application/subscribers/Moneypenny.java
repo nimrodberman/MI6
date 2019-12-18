@@ -12,8 +12,8 @@ import bgu.spl.mics.application.passiveObjects.Squad;
  * You MAY change constructor signatures and even add new public constructors.
  */
 public class Moneypenny extends Subscriber {
-	int serial;
-	Squad squad;
+	private int serial;
+	private Squad squad;
 
 
 	public Moneypenny(int Serial) {
