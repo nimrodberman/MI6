@@ -48,6 +48,12 @@ public class M extends Subscriber {
 
 			// if all conditions are valid send the mission
 			if(report3.isGadetIsExist() && report3.isAgentsExists() && time <= s.getMissionInfo().getTimeExpired()){
+				// update the m details
+				report3.setM(serial);
+				report3.setAgentsSerialNumbersNumber(s.getMissionInfo().getSerialAgentsNumbers());
+				report3.setGadgetName(s.getMissionInfo().getGadget());
+				report3.setTimeIssued(s.getMissionInfo().getTimeIssued());
+				report3.setTimeCreated(time);
 				diary.addReport(report3);
 				Future t = m_publish.sendEvent(new AgentActiveEvent(s.getMissionInfo().getSerialAgentsNumbers(),s.getMissionInfo().getDuration()));
 			}

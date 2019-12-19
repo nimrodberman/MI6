@@ -2,26 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="deb8d330-7a49-4ac2-8f1f-e4a0bb62932c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bgu/spl/mics/MessageBrokerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bgu/spl/mics/MessageBrokerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bgu/spl/mics/RunnableSubPub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bgu/spl/mics/RunnableSubPub.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bgu/spl/mics/SimplePublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bgu/spl/mics/SimplePublisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/MI6Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/MI6Runner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/passiveObjects/Services.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/passiveObjects/Services.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/publishers/Intelligence.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/subscribers/Intelligence.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/publishers/TimeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/publishers/TimeService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/subscribers/M.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/subscribers/M.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/subscribers/Moneypenny.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/subscribers/Moneypenny.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/subscribers/Q.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/subscribers/Q.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/readme" beforeDir="false" afterPath="$PROJECT_DIR$/src/readme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/bgu/spl/mics/AgentsAvailableEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/bgu/spl/mics/AgentsAvailableEvent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/bgu/spl/mics/MessageBrokerImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/bgu/spl/mics/MessageBrokerImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/bgu/spl/mics/SimplePublisher.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/bgu/spl/mics/SimplePublisher.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/bgu/spl/mics/application/passiveObjects/Report.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/bgu/spl/mics/application/passiveObjects/Report.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/bgu/spl/mics/application/passiveObjects/Services.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/bgu/spl/mics/application/passiveObjects/Services.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/bgu/spl/mics/application/passiveObjects/Squad.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/bgu/spl/mics/application/passiveObjects/Squad.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/bgu/spl/mics/application/publishers/Intelligence.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/bgu/spl/mics/application/publishers/TimeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/bgu/spl/mics/application/publishers/TimeService.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,7 +24,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="114" />
+          <entry key="java" value="120" />
           <entry key="json" value="3" />
           <entry key="readme" value="3" />
           <entry key="xml" value="1" />
@@ -50,7 +32,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="114" />
+          <entry key="JAVA" value="120" />
           <entry key="JSON" value="3" />
           <entry key="PLAIN_TEXT" value="3" />
           <entry key="XML" value="1" />
@@ -59,14 +41,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="17" />
-          <entry key="java" value="8117" />
+          <entry key="java" value="8251" />
           <entry key="readme" value="1007" />
           <entry key="txt" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="8117" />
+          <entry key="JAVA" value="8251" />
           <entry key="PLAIN_TEXT" value="1038" />
         </counts>
       </usages-collector>
@@ -87,22 +69,9 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/passiveObjects/Services.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-              <folding>
-                <element signature="e#319#320#0" expanded="true" />
-                <element signature="e#352#353#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/subscribers/Intelligence.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
+            <state relative-caret-position="215">
               <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -123,12 +92,45 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/publishers/TimeService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="46" column="29" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
+            <state relative-caret-position="140">
+              <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1272#1273#0" expanded="true" />
-                <element signature="e#1299#1300#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/bgu/spl/mics/example/ExampleManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="39" column="33" lean-forward="true" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/subscribers/M.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="46" column="43" lean-forward="true" selection-start-line="46" selection-start-column="43" selection-end-line="46" selection-end-column="43" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/passiveObjects/Report.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="316">
+              <caret line="180" column="55" selection-start-line="180" selection-start-column="55" selection-end-line="180" selection-end-column="55" />
+              <folding>
+                <element signature="e#3474#3475#0" expanded="true" />
+                <element signature="e#3500#3501#0" expanded="true" />
+                <element signature="e#3593#3594#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -162,24 +164,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/bgu/spl/mics/MessageBrokerImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="26" selection-start-line="26" selection-end-line="32" selection-end-column="5" />
+            <state relative-caret-position="204">
+              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1045#1046#0" expanded="true" />
                 <element signature="e#1077#1078#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/subscribers/Moneypenny.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
-              <folding>
-                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -226,7 +216,6 @@
         <option value="$PROJECT_DIR$/src/main/java/bgu/spl/mics/ReleaseAgentsEvent.java" />
         <option value="$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/subscribers/Q.java" />
         <option value="$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/subscribers/Moneypenny.java" />
-        <option value="$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/subscribers/M.java" />
         <option value="$PROJECT_DIR$/src/main/java/bgu/spl/mics/SimplePublisher.java" />
         <option value="$PROJECT_DIR$/src/main/java/bgu/spl/mics/MessageBrokerImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/bgu/spl/mics/RunnableSubPub.java" />
@@ -236,6 +225,7 @@
         <option value="$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/MI6Runner.java" />
         <option value="$PROJECT_DIR$/src/readme" />
         <option value="$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/publishers/TimeService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/subscribers/M.java" />
       </list>
     </option>
   </component>
@@ -308,6 +298,36 @@
               <item name="MI6" type="b2602c69:ProjectViewProjectNode" />
               <item name="MI6" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="mics" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="passiveObjects" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MI6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MI6" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="mics" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="publishers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MI6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MI6" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="mics" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="subscribers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MI6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MI6" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -319,7 +339,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1576709590604" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1576754054034" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
   </component>
@@ -450,7 +470,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.ExampleManager">
+    <configuration name="ExampleManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="bgu.spl.mics.example.ExampleManager" />
+      <module name="MI6" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="bgu.spl.mics.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MI6Runner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="bgu.spl.mics.application.MI6Runner" />
       <module name="MI6" />
@@ -464,8 +497,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.MI6Runner" />
+      <item itemvalue="Application.ExampleManager" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ExampleManager" />
         <item itemvalue="Application.MI6Runner" />
       </list>
     </recent_temporary>
@@ -495,7 +533,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14161074" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14161074" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -504,7 +542,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2751773" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2751773" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -548,13 +586,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/bgu/spl/mics/example/subscribers/ExampleEventHandlerSubscriber.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-23">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bgu/spl/mics/example/subscribers/ExampleBroadcastSubscriber.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-74">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
@@ -715,20 +746,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/passiveObjects/Report.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="180" column="55" selection-start-line="180" selection-start-column="55" selection-end-line="180" selection-end-column="55" />
-          <folding>
-            <element signature="e#3389#3390#0" expanded="true" />
-            <element signature="e#3415#3416#0" expanded="true" />
-            <element signature="e#3474#3475#0" expanded="true" />
-            <element signature="e#3500#3501#0" expanded="true" />
-            <element signature="e#3593#3594#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/bgu/spl/mics/ReleaseAgentsEvent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -859,16 +876,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/subscribers/M.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="27" selection-start-line="27" selection-end-line="29" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/passiveObjects/Inventory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -893,26 +900,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/subscribers/Intelligence.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/MI6Runner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/bgu/spl/mics/info.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-98">
@@ -924,18 +911,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" column="66" selection-start-line="23" selection-start-column="66" selection-end-line="23" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bgu/spl/mics/MessageBrokerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="26" selection-start-line="26" selection-end-line="32" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1045#1046#0" expanded="true" />
-            <element signature="e#1077#1078#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -960,14 +935,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/publishers/TimeService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/bgu/spl/mics/example/subscribers/ExampleBroadcastSubscriber.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="46" column="29" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
+        <state relative-caret-position="68">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bgu/spl/mics/example/ExampleManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="39" column="33" lean-forward="true" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/passiveObjects/Report.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="180" column="55" selection-start-line="180" selection-start-column="55" selection-end-line="180" selection-end-column="55" />
+          <folding>
+            <element signature="e#3474#3475#0" expanded="true" />
+            <element signature="e#3500#3501#0" expanded="true" />
+            <element signature="e#3593#3594#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/MI6Runner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1272#1273#0" expanded="true" />
-            <element signature="e#1299#1300#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/subscribers/M.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="46" column="43" lean-forward="true" selection-start-line="46" selection-start-column="43" selection-end-line="46" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/subscribers/Intelligence.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bgu/spl/mics/MessageBrokerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1045#1046#0" expanded="true" />
+            <element signature="e#1077#1078#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bgu/spl/mics/application/publishers/TimeService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

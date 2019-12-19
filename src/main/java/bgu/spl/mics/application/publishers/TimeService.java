@@ -44,7 +44,7 @@ public class TimeService extends Publisher {
 
 	@Override
 	public void run() {
-		this.timer.schedule()
+		//this.timer.schedule()
 	}
 
 }
