@@ -43,8 +43,7 @@ public class MessageBrokerImpl implements MessageBroker {
 		// check if input is valid
 		if (type != null && m != null){
 			// set an atomic clock
-			AtomicInteger i = null;
-			i.set(0);
+			AtomicInteger i = new AtomicInteger(0);
 
 			synchronized (topics){
 				// if topic does not exit
@@ -69,8 +68,7 @@ public class MessageBrokerImpl implements MessageBroker {
 		// check if input is valid
 		if (type != null && m != null){
 			// set an atomic clock
-			AtomicInteger i = null;
-			i.set(0);
+			AtomicInteger i = new AtomicInteger(0);
 
 			synchronized (topics){
 				// if topic does not exit
@@ -113,7 +111,7 @@ public class MessageBrokerImpl implements MessageBroker {
 	
 	@Override
 	public <T> Future<T> sendEvent(Event<T> e) {
-		Future f = new Future();
+		Future<T> f = new Future<>();
 
 		// check if is a valid event and if the topic exist
 		if (e != null  && topics.get(e) != null && !topics.get(e).getList().isEmpty()){
@@ -133,9 +131,6 @@ public class MessageBrokerImpl implements MessageBroker {
 				}
 			}
 		}
-		else {
-		    f = null;
-        }
 		return f;
 	}
 
