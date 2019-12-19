@@ -3,6 +3,7 @@ package bgu.spl.mics;
 public class TickBroadcast implements Broadcast {
     private int tickNumber;
 
+
     public TickBroadcast(int tickNumber) {
         this.tickNumber = tickNumber;
     }
