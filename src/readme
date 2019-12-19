@@ -23,3 +23,6 @@ Does we need to syncroiezd the intellegence callbacks?
 
 Simplepublisher in intellejence is interupting the json reading???
 
+in timeservice - 	/// **************** do we need to change to private?? because it is a singleton???????????????????
+
+

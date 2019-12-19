@@ -1,8 +1,6 @@
 package bgu.spl.mics.application.publishers;
 
-import bgu.spl.mics.Publisher;
-import bgu.spl.mics.SimplePublisher;
-import bgu.spl.mics.TickBroadcast;
+import bgu.spl.mics.*;
 import bgu.spl.mics.application.passiveObjects.Diary;
 
 import java.util.Timer;
@@ -24,27 +22,44 @@ public class TimeService extends Publisher {
 	private static TimeService instance = new TimeService();
 	private Timer timer;
 	private SimplePublisher simplePublisher;
-	int ticknumber;
+	private int ticknumber;
+	private int terminate;
 	/**
 	 * Retrieves the single instance of this class.
 	 */
-	private TimeService() {
+
+	/// **************** do we need to change to private?? because it is a singleton???????????????????
+	public TimeService(String name, int terminate) {
 		super("TimeService");
 		this.timer = new Timer();
 		this.simplePublisher = new SimplePublisher();
 		ticknumber =0;
+		this.terminate = terminate;
 	}
-
 
 	@Override
 	protected void initialize() {
-
 
 	}
 
 	@Override
 	public void run() {
-		//this.timer.schedule()
+		class Helper extends TimerTask
+		{
+			public static int i = 0;
+			private Broadcast b = new TickBroadcast(i);
+
+			public void run()
+			{
+				getSimplePublisher().sendBroadcast(b);
+				i++;
+			}
+		}
+		TimerTask task = new Helper();
+
+		this.timer.scheduleAtFixedRate(task,300,terminate);
+
 	}
+
 
 }

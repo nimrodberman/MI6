@@ -3,6 +3,7 @@ import javafx.collections.transformation.SortedList;
 
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -14,7 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class MessageBrokerImpl implements MessageBroker {
 	// ________________ fields ________________________
-	private ConcurrentHashMap<Subscriber,LinkedBlockingQueue<Message>> subscribersQueue;
+	private ConcurrentHashMap<Subscriber,BlockingQueue<Message>> subscribersQueue;
 	private ConcurrentHashMap<Class<? extends Message>, roundRubin> topics;
 	private ConcurrentHashMap<Event, Future> futureAndEvents;
 
@@ -91,18 +92,26 @@ public class MessageBrokerImpl implements MessageBroker {
 
 	@Override
 	public <T> void complete(Event<T> e, T result) {
-		if(e != null){
-			futureAndEvents.get(e).resolve(result);
+		if(e != null && result != null){
+		    if(futureAndEvents.get(e) == null){
+		        Future f = new Future();
+		        f.resolve(result);
+		        futureAndEvents.put(e,f);
+            }
+            else {
+                futureAndEvents.get(e).resolve(result);
+            }
+
 		}
 	}
 
 	@Override
 	public void sendBroadcast(Broadcast b) {
-		if (b != null  && topics.get(b) != null && !topics.get(b).getList().isEmpty()){
+		if (b != null  && topics.get(b.getClass()) != null && !topics.get(b.getClass()).getList().isEmpty()){
 			synchronized (topics) {
-				ArrayList<Subscriber> toBroad = topics.get(b).getList();
+				ArrayList<Subscriber> toBroad = topics.get(b.getClass()).getList();
 				for (Subscriber s : toBroad) {
-					subscribersQueue.get(s).add(b);
+				    subscribersQueue.get(s).add(b);
 				}
 			}
 		}
@@ -114,20 +123,20 @@ public class MessageBrokerImpl implements MessageBroker {
 		Future<T> f = new Future<>();
 
 		// check if is a valid event and if the topic exist
-		if (e != null  && topics.get(e) != null && !topics.get(e).getList().isEmpty()){
+		if (e != null  && topics.get(e.getClass()) != null && !topics.get(e.getClass()).getList().isEmpty()){
 			synchronized (topics){
 				// get the atomic counter
-				AtomicInteger counter = topics.get(e).getCounter();
+				AtomicInteger counter = topics.get(e.getClass()).getCounter();
 				// insert the bond of those objects
 				futureAndEvents.put(e,f);
 				//add the mission to one of the subscribers
-				subscribersQueue.get(topics.get(e).getList().get(counter.get())).add(e);
+				subscribersQueue.get(topics.get(e.getClass()).getList().get(counter.get())).add(e);
 				// maintain the pointer to the next subscriber in line
-				if(counter.get() < topics.get(e).getList().size()){
-					topics.get(e).setItonext();
+				if(counter.get() < topics.get(e.getClass()).getList().size()){
+					topics.get(e.getClass()).setItonext();
 				}
 				else {
-					topics.get(e).setItozero();
+					topics.get(e.getClass()).setItozero();
 				}
 			}
 		}
