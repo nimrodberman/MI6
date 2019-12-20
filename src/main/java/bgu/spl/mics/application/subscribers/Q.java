@@ -1,6 +1,7 @@
 package bgu.spl.mics.application.subscribers;
 
 import bgu.spl.mics.*;
+import bgu.spl.mics.application.EndActivities;
 import bgu.spl.mics.application.passiveObjects.Inventory;
 import bgu.spl.mics.application.passiveObjects.Report;
 
@@ -39,6 +40,10 @@ public class Q extends Subscriber {
 
 		this.subscribeBroadcast(TickBroadcast.class, timecall);
 		this.subscribeEvent(GadgetAvailableEvent.class, gadgetavailble);
+		Callback<EndActivities> endActivitiesCallback = (EndActivities t) -> {
+			this.terminate();
+		};
+		this.subscribeBroadcast(EndActivities.class, endActivitiesCallback);
 
 
 	}

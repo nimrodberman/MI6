@@ -50,10 +50,23 @@ public class Diary {
 	 * Prints to a file name @filename a serialized object List<Report> which is a
 	 * List of all the reports in the diary.
 	 * This method is called by the main method in order to generate the output.
+	 *
+	 *
 	 */
 	public void printToFile(String filename){
 		PrintFile output = new PrintFile(filename , this.reports);
 		output.print();
+	}
+
+	public  void print(){
+		System.out.println(total);
+		for(Report r: reports){
+			System.out.println(r.getM());
+			System.out.println(r.getAgentsNames());
+			System.out.println(r.getTimeCreated());
+			System.out.println(r.getTimeIssued());
+			System.out.println(r.getQTime());
+		}
 	}
 
 	/**

@@ -1,6 +1,7 @@
 package bgu.spl.mics.application.publishers;
 
 import bgu.spl.mics.*;
+import bgu.spl.mics.application.EndActivities;
 import bgu.spl.mics.application.passiveObjects.Diary;
 
 import java.util.Timer;
@@ -10,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * TimeService is the global system timer There is only one instance of this Publisher.
  * It keeps track of the amount of ticks passed since initialization and notifies
- * all other subscribers about the current time tick using {@link Tick Broadcast}.
+ * all other subscribers about the current time tick using {@link TickBroadcast}.
  * This class may not hold references for objects which it is not responsible for.
  *
  * You can add private fields and public methods to this class.
@@ -19,46 +20,47 @@ import java.util.concurrent.TimeUnit;
 public class TimeService extends Publisher {
 
 	//____fields____
-	private static TimeService instance = new TimeService();
+	private final int update = 100;
 	private Timer timer;
 	private SimplePublisher simplePublisher;
 	private int ticknumber;
-	private int terminate;
+	private int duration;
 	/**
 	 * Retrieves the single instance of this class.
 	 */
 
 	/// **************** do we need to change to private?? because it is a singleton???????????????????
-	public TimeService(String name, int terminate) {
+	public TimeService(int duration) {
 		super("TimeService");
 		this.timer = new Timer();
 		this.simplePublisher = new SimplePublisher();
-		ticknumber =0;
-		this.terminate = terminate;
+		this.ticknumber = 1;
+		this.duration = duration;
 	}
 
 	@Override
 	protected void initialize() {
-
+		this.run();
 	}
 
 	@Override
 	public void run() {
-		class Helper extends TimerTask
-		{
-			public static int i = 0;
-			private Broadcast b = new TickBroadcast(i);
 
-			public void run()
-			{
-				getSimplePublisher().sendBroadcast(b);
-				i++;
-			}
-		}
-		TimerTask task = new Helper();
-
-		this.timer.scheduleAtFixedRate(task,300,terminate);
-
+			this.timer.schedule(new TimerTask() {
+				@Override
+				public void run() {
+					if (ticknumber > duration) {
+						simplePublisher.sendBroadcast(new EndActivities());
+						timer.cancel();
+						timer.purge();
+					} else {
+						Broadcast b = new TickBroadcast(ticknumber);
+						System.out.println("ticktock" + ticknumber);
+						simplePublisher.sendBroadcast(b);
+						ticknumber++;
+					}
+				}
+			}, update, update);
 	}
 
 

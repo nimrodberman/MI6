@@ -40,9 +40,11 @@ public class Squad {
 	 * 						of the squad.
 	 */
 	public void load (Agent[] agents) {
-		synchronized (this.agents){
+		synchronized (this){
 			for (Agent a: agents) {
-				this.agents.put(a.getName(),a);
+				a.setAvilability(true);
+				this.agents.put(a.getSerialNumber(),a);
+
 			}
 		}
 	}
@@ -51,11 +53,21 @@ public class Squad {
 	 * Releases agents.
 	 */
 	public void releaseAgents(List<String> serials){
-		for (String s : serials){
-			if(this.agents.containsKey(s))
-				this.agents.get(s).release();
+		System.out.println("before syn");
+		synchronized (this) {
+			for (String s : serials) {
+				if (this.agents.containsKey(s)) {
+					this.agents.get(s).release();
+					System.out.println("agent" + s + "free");
+				}
+			}
+			try {
+				this.notifyAll();
+			}
+			catch (Exception e){
+				e.printStackTrace();
+			}
 		}
-		notifyAll();
 	}
 
 	/**
@@ -63,13 +75,13 @@ public class Squad {
 	 * @param time   milliseconds to sleep
 	 */
 	public void sendAgents(List<String> serials, int time){
-		try {
-			Thread.sleep(time);
-		} catch(InterruptedException ex){
-			Thread.currentThread().interrupt();
-		}
-		for (String s: serials) {
-			this.agents.get(s).release();
+		synchronized (this) {
+			try {
+				Thread.sleep(time);
+			} catch (InterruptedException ex) {
+				Thread.currentThread().interrupt();
+			}
+			this.releaseAgents(serials);
 		}
 	}
 
@@ -79,19 +91,20 @@ public class Squad {
 	 * @return ‘false’ if an agent of serialNumber ‘serial’ is missing, and ‘true’ otherwise
 	 */
 	public boolean getAgents(List<String> serials) throws InterruptedException {
-		serials.sort(String::compareTo);
-		for (String s: serials) {
-			if (!agents.containsKey(s)){
-				return false;
+		System.out.println("before syn");
+
+		synchronized(this) {
+			serials.sort(String::compareTo);
+			for (String s : serials) {
+				if (!agents.containsKey(s)) {
+					return false;
+				}
+				while(!agents.get(s).isAvailable()){this.wait();}
+				agents.get(s).acquire();
+				System.out.println("agent" + s + "aquiered");
 			}
-			if (!agents.get(s).isAvailable()) {
-				do {
-					Thread.currentThread().wait();
-				} while (!agents.get(s).isAvailable());
-			}
-			agents.get(s).acquire();
+			return true;
 		}
-		return true;
 	}
 
 

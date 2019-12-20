@@ -26,15 +26,15 @@ public class MissionInfo {
 	/**
      * Sets the name of the mission.
      */
-    public void setMissionName(String missionName) {
-        this.missionName = missionName;
+    public void setMissionName(String m) {
+        this.missionName = m;
     }
 
 	/**
      * Retrieves the name of the mission.
      */
 	public String getMissionName() {
-		return this.getMissionName();
+		return missionName;
 	}
 
     /**

@@ -1,5 +1,5 @@
 package bgu.spl.mics;
-import javafx.collections.transformation.SortedList;
+//import javafx.collections.transformation.SortedList;
 
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
@@ -132,7 +132,7 @@ public class MessageBrokerImpl implements MessageBroker {
 				//add the mission to one of the subscribers
 				subscribersQueue.get(topics.get(e.getClass()).getList().get(counter.get())).add(e);
 				// maintain the pointer to the next subscriber in line
-				if(counter.get() < topics.get(e.getClass()).getList().size()){
+				if(counter.get() < topics.get(e.getClass()).getList().size()-1){
 					topics.get(e.getClass()).setItonext();
 				}
 				else {

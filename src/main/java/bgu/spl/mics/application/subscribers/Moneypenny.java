@@ -1,6 +1,7 @@
 package bgu.spl.mics.application.subscribers;
 
 import bgu.spl.mics.*;
+import bgu.spl.mics.application.EndActivities;
 import bgu.spl.mics.application.passiveObjects.Report;
 import bgu.spl.mics.application.passiveObjects.Squad;
 
@@ -24,8 +25,6 @@ public class Moneypenny extends Subscriber {
 
 	@Override
 	protected void initialize() {
-
-
 		Callback<AgentsAvailableEvent> agentavailable = (AgentsAvailableEvent t) -> {
 			// update the report
 			Report report = t.getReport();
@@ -61,6 +60,10 @@ public class Moneypenny extends Subscriber {
 			squad.releaseAgents(t.getList());
 			complete(t,null);
 		};
+		Callback<EndActivities> endActivitiesCallback = (EndActivities t) -> {
+			this.terminate();
+		};
+		this.subscribeBroadcast(EndActivities.class, endActivitiesCallback);
 
 		this.subscribeEvent(ReleaseAgentsEvent.class, realseagents);
 		this.subscribeEvent(AgentActiveEvent.class, activeagent);
