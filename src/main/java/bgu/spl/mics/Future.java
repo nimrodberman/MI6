@@ -31,23 +31,33 @@ public class Future<T> {
      * 	       
      */
 	public T get() {
-		while(!isDone){
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+		synchronized (this) {
+			while (!isDone) {
+				try {
+					this.wait();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			return output;
 		}
-		return output;
 	}
+
 	
 	/**
      * Resolves the result of this Future object.
      */
-	public synchronized void resolve (T result) {
-		output = result;
-		isDone = true;
-		notifyAll();
+	public  void resolve (T result) {
+		synchronized (this){
+			output = result;
+			isDone = true;
+			try {
+				this.notifyAll();
+			}
+			catch (Exception e){
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	/**

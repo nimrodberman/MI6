@@ -126,11 +126,12 @@ public abstract class Subscriber extends RunnableSubPub {
         while (!terminated) try {
             Message s = ms.awaitMessage(this);
             //start the proper callback if exist
-            if(callbacks.contains(s)) {
-                callbacks.get(s).call(s);
+            if(callbacks.containsKey(s.getClass())) {
+                callbacks.get(s.getClass()).call(s);
             }
         } catch (InterruptedException e) {
             terminate();
         }
+        ms.unregister(this);
     }
 }

@@ -11,17 +11,16 @@ public class Agent {
 	//____________fields_____________
 	private String serialNumber;
 	private String name;
-	private boolean available ;
+	private boolean available = true;
 
 	//_________constructors__________
 	public Agent (String serialNumber , String name){
 		this.setSerialNumber(serialNumber);
 		this.setName(name);
-		this.setAvilability(true);
 	}
 
 	//____________methods____________
-	public void setSerialNumber(String serialNumber) {
+	public void  setSerialNumber(String serialNumber) {
 		this.serialNumber = serialNumber;
 	}
 
@@ -30,14 +29,14 @@ public class Agent {
      * <p>
      * @return The serial number of an agent.
      */
-	public String getSerialNumber() {
+	public synchronized String getSerialNumber() {
 		return this.serialNumber;
 	}
 
 	/**
 	 * Sets the name of the agent.
 	 */
-	public void setName(String name) {
+	public synchronized void setName(String name) {
 		this.name = name;
 	}
 
@@ -46,7 +45,7 @@ public class Agent {
      * <p>
      * @return the name of the agent.
      */
-	public String getName() {
+	public synchronized String getName() {
 		if (this.name != null){
 			return this.name;
 		}
@@ -58,25 +57,25 @@ public class Agent {
      * <p>
      * @return if the agent is available.
      */
-	public boolean isAvailable() {
+	public synchronized boolean isAvailable() {
 		return this.available;
 	}
 
 	/**
 	 * Acquires an agent.
 	 */
-	public void acquire(){
+	public synchronized void acquire(){
 		this.setAvilability(false);
 	}
 
 	/**
 	 * Releases an agent.
 	 */
-	public void release(){
+	public synchronized void release(){
 		this.setAvilability(true);
 	}
 
-    public void setAvilability(boolean b) {
+    public synchronized void setAvilability(boolean b) {
 		this.available = b;
     }
 }

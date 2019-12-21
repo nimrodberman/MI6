@@ -32,35 +32,37 @@ public class M extends Subscriber {
 		this.subscribeBroadcast(TickBroadcast.class, timecall);
 
 		Callback<MissionReceivedEvent> missioncall = (MissionReceivedEvent s) ->{
+			System.out.println("M " + serial + " running the mission");
 			diary.incrementTotal();
 			Report report = new Report();
 			report.setTimeCreated(time);
-			report.setM(serial);
 
-			SimplePublisher m_publish = this.getSimplePublisher();
-			Future<Report> future = m_publish.sendEvent(new AgentsAvailableEvent(s.getMissionInfo().getSerialAgentsNumbers(), report));
+
+			Future<Report> future = getSimplePublisher().sendEvent(new AgentsAvailableEvent(s.getMissionInfo().getSerialAgentsNumbers(), report));
 
 			// wait until agents are available
 			Report report2 = future.get();
 
+
 			//get the report from Q
-			Future<Report> future1 = m_publish.sendEvent(new GadgetAvailableEvent(s.getMissionInfo().getGadget(),report2));
+			Future<Report> future1 = getSimplePublisher().sendEvent(new GadgetAvailableEvent(s.getMissionInfo().getGadget(),report2));
 			Report report3 = future1.get();
 
 			// if all conditions are valid send the mission
-			if(report3.isGadetIsExist() && report3.isAgentsExists() && time <= s.getMissionInfo().getTimeExpired()){
+			if(report3.isGadetIsExist() && report3.isAgentsExists() && report3.getQTime() <= s.getMissionInfo().getTimeExpired()){
 				// update the m details
 				report3.setM(serial);
+				report.setMissionName(s.getMissionInfo().getMissionName());
 				report3.setAgentsSerialNumbersNumber(s.getMissionInfo().getSerialAgentsNumbers());
 				report3.setGadgetName(s.getMissionInfo().getGadget());
 				report3.setTimeIssued(s.getMissionInfo().getTimeIssued());
 				report3.setTimeCreated(time);
 				diary.addReport(report3);
-				Future t = m_publish.sendEvent(new AgentActiveEvent(s.getMissionInfo().getSerialAgentsNumbers(),s.getMissionInfo().getDuration()));
+				Future t = getSimplePublisher().sendEvent(new AgentActiveEvent(s.getMissionInfo().getSerialAgentsNumbers(),s.getMissionInfo().getDuration()));
 			}
 
 			else{
-				Future t = m_publish.sendEvent(new ReleaseAgentsEvent(s.getMissionInfo().getSerialAgentsNumbers()));
+				Future t = getSimplePublisher().sendEvent(new ReleaseAgentsEvent(s.getMissionInfo().getSerialAgentsNumbers()));
 			}
 		};
 

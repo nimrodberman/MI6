@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Semaphore;
 
 /**
  * Passive data-object representing a information about an agent in MI6.
@@ -12,6 +13,8 @@ import java.util.Map;
  */
 public class Squad {
 	private static Squad instance = new Squad();
+	private Semaphore sem = new Semaphore(10,true);
+
 
 
 	//____________fields_____________
@@ -40,9 +43,11 @@ public class Squad {
 	 * 						of the squad.
 	 */
 	public void load (Agent[] agents) {
-		synchronized (this.agents){
+		synchronized (this){
 			for (Agent a: agents) {
-				this.agents.put(a.getName(),a);
+				a.setAvilability(true);
+				this.agents.put(a.getSerialNumber(),a);
+
 			}
 		}
 	}
@@ -50,27 +55,27 @@ public class Squad {
 	/**
 	 * Releases agents.
 	 */
-	public void releaseAgents(List<String> serials){
-		for (String s : serials){
-			if(this.agents.containsKey(s))
+	public void releaseAgents(List<String> serials) throws InterruptedException {
+		System.out.println("before syn realse "  + Thread.currentThread().getName());
+		for (String s : serials) {
+			if (this.agents.containsKey(s)) {
 				this.agents.get(s).release();
+				System.out.println("agent " + s + " is free");
+			}
 		}
-		notifyAll();
+		sem.release();
 	}
 
 	/**
 	 * simulates executing a mission by calling sleep.
 	 * @param time   milliseconds to sleep
 	 */
-	public void sendAgents(List<String> serials, int time){
-		try {
-			Thread.sleep(time);
-		} catch(InterruptedException ex){
-			Thread.currentThread().interrupt();
+	public void sendAgents(List<String> serials, int time) throws InterruptedException {
+		Thread.sleep(time*100);
+		for(String s: serials){
+			System.out.println("agent" + s + "finish a mission");
 		}
-		for (String s: serials) {
-			this.agents.get(s).release();
-		}
+		this.releaseAgents(serials);
 	}
 
 	/**
@@ -79,32 +84,39 @@ public class Squad {
 	 * @return ‘false’ if an agent of serialNumber ‘serial’ is missing, and ‘true’ otherwise
 	 */
 	public boolean getAgents(List<String> serials) throws InterruptedException {
+		System.out.println("before syn get agent " + Thread.currentThread().getName());
 		serials.sort(String::compareTo);
-		for (String s: serials) {
-			if (!agents.containsKey(s)){
+		sem.acquire();
+		for (String s : serials) {
+			if (!agents.containsKey(s)) {
 				return false;
 			}
-			if (!agents.get(s).isAvailable()) {
-				do {
-					Thread.currentThread().wait();
-				} while (!agents.get(s).isAvailable());
+			while(!agents.get(s).isAvailable()){
+				try{
+				sem.acquire();
+			}
+				catch (Exception e){
+					e.printStackTrace();
+				}
 			}
 			agents.get(s).acquire();
+			System.out.println("agent " + s + " is aquiered " +  Thread.currentThread().getName());
 		}
+		sem.release();
 		return true;
 	}
 
 
-    /**
-     * gets the agents names
-     * @param serials the serial numbers of the agents
-     * @return a list of the names of the agents with the specified serials.
-     */
-    public List<String> getAgentsNames(List<String> serials){
-    	List <String> out = new ArrayList<String> ();
+	/**
+	 * gets the agents names
+	 * @param serials the serial numbers of the agents
+	 * @return a list of the names of the agents with the specified serials.
+	 */
+	public List<String> getAgentsNames(List<String> serials){
+		List <String> out = new ArrayList<String> ();
 		for (String s: serials) {
 			out.add(this.agents.get(s).getName());
 		}
 		return out;
-    }
+	}
 }

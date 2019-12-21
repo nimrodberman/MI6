@@ -40,11 +40,12 @@ public class Q extends Subscriber {
 
 		this.subscribeBroadcast(TickBroadcast.class, timecall);
 		this.subscribeEvent(GadgetAvailableEvent.class, gadgetavailble);
-
 		Callback<EndActivities> endActivitiesCallback = (EndActivities t) -> {
 			this.terminate();
 		};
 		this.subscribeBroadcast(EndActivities.class, endActivitiesCallback);
+
+
 	}
 
 }

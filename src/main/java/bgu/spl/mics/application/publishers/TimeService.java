@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * TimeService is the global system timer There is only one instance of this Publisher.
  * It keeps track of the amount of ticks passed since initialization and notifies
- * all other subscribers about the current time tick using {@link Tick Broadcast}.
+ * all other subscribers about the current time tick using {@link TickBroadcast}.
  * This class may not hold references for objects which it is not responsible for.
  *
  * You can add private fields and public methods to this class.
@@ -34,33 +34,32 @@ public class TimeService extends Publisher {
 		super("TimeService");
 		this.timer = new Timer();
 		this.simplePublisher = new SimplePublisher();
-		this.ticknumber =0;
+		this.ticknumber = 1;
 		this.duration = duration;
 	}
 
 	@Override
 	protected void initialize() {
-		this.run();
 	}
 
 	@Override
 	public void run() {
-		this.timer.schedule(new TimerTask() {
-			@Override
-			public void run() {
-				if (ticknumber>duration){
-					simplePublisher.sendBroadcast(new EndActivities());
-					timer.cancel();
-					timer.purge();
-				}
-				else{
-					Broadcast b = new TickBroadcast(ticknumber);
-					simplePublisher.sendBroadcast(b);
-					ticknumber++;
-				}
-			}
-		} , update);
 
+			this.timer.schedule(new TimerTask() {
+				@Override
+				public void run() {
+					if (ticknumber > duration) {
+						simplePublisher.sendBroadcast(new EndActivities());
+						timer.cancel();
+						timer.purge();
+					} else {
+						Broadcast b = new TickBroadcast(ticknumber);
+						System.out.println("ticktock" + ticknumber);
+						simplePublisher.sendBroadcast(b);
+						ticknumber++;
+					}
+				}
+			}, update, update);
 	}
 
 

@@ -1,11 +1,12 @@
 package bgu.spl.mics.application;
 import bgu.spl.mics.Subscriber;
 import bgu.spl.mics.application.passiveObjects.*;
-import bgu.spl.mics.application.subscribers.M;
-import bgu.spl.mics.application.subscribers.Moneypenny;
+import bgu.spl.mics.application.publishers.TimeService;
+import bgu.spl.mics.application.subscribers.*;
 import com.google.gson.Gson;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -24,11 +25,13 @@ import java.io.Reader;
  * In the end, you should output serialized objects.
  */
 public class MI6Runner {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Gson gson = new Gson();
+        List<Thread> threadList = new ArrayList<>();
 
+        // Upload all files
         try {
-            Reader reader = new FileReader("C:\\Users\\Nimrod\\Documents\\GitHub\\MI6\\src\\test\\java\\bgu\\spl\\mics\\info.json");
+            Reader reader = new FileReader("/users/studs/bsc/2020/bermann/Desktop/version work 2/version_19-12/MI6-nimrod_18_12/src/test/java/bgu/spl/mics/info.json");
             JsonParse file = gson.fromJson(reader,JsonParse.class);
             //create a reference
 
@@ -39,29 +42,63 @@ public class MI6Runner {
             inventory.load(file.getInventory());
             squad.load(file.getSquad());
 
-            int m_nubmber = file.getServices().getM();
-            int mp_number = file.getServices().getMp();
-            int intellegence_number = file.getServices().getIntelligences().length;
-            int time = file.getServices().getTime();
+            // upload M instances
+            for (int i = 0; i < file.getServices().getM(); i++){
+                M tmp = new M(i+1);
+                Thread toAdd = new Thread(tmp);
+                threadList.add(toAdd);
+            }
+            // upload MoneyPenny instances
+            for (int i = 0; i < file.getServices().getMp(); i++){
+                if (i < file.getServices().getMp()/2) {
+                    Moneypenny tmp = new Moneypenny(i + 1);
+                    Thread toAdd = new Thread(tmp);
+                    threadList.add(toAdd);
+                }
+                else {
+                    MoneyPennyRelease tmp = new MoneyPennyRelease(i + 1);
+                    Thread toAdd = new Thread(tmp);
+                    threadList.add(toAdd);
+                }
+            }
 
+            // upload intellegence
+            int counter = 1;
+            for (Intelligence i : file.getServices().getIntelligences()){
+                Intelligence tmp = new Intelligence(counter, file.getServices().getIntelligences()[counter-1].getMissions());
+                Thread toAdd = new Thread(tmp);
+                threadList.add(toAdd);
+                counter++;
+            }
 
+            //upload Q Instance
+            Q tmp = new Q(0);
+            Thread toAdd = new Thread(tmp);
+            threadList.add(toAdd);
 
-
-
-
-
-
-            System.out.println(file.getServices().getIntelligences()[0].getMissions()[0].getSerialAgentsNumbers());
-
-
-
-
+            //upload time service
+            TimeService tmp1 = new TimeService(file.getServices().getTime());
+            Thread toAdd1 = new Thread(tmp1);
+            threadList.add(toAdd1);
 
             reader.close();
         }
         catch (Exception e) {
             System.out.println(e);
         }
+
+        System.out.println("All OK");
+
+        for (Thread s:threadList){
+            s.start();
+        }
+
+        for (Thread s:threadList){
+            s.join();
+        }
+
+        Diary toPrint = Diary.getInstance();
+        toPrint.printToFile("Result");
 
 
 

@@ -13,38 +13,39 @@
         "missions": [
           {
             "serialAgentsNumbers": [
+              "005",
               "006",
               "007"
             ],
             "duration": 7,
             "gadget": "Sky Hook",
-            "missionName": "Thunderball",
+            "missionName": "Thunderball1",
             "timeExpired": 15,
             "timeIssued": 3
           },
           {
             "serialAgentsNumbers": ["007"],
             "duration": 2,
-            "gadget": "Dagger shoe",
-            "missionName": "From Russia With Love",
-            "timeExpired": 8,
+            "gadget": "Geiger counter",
+            "missionName": "The world is not enough",
+            "timeExpired": 108,
             "timeIssued": 6
           },
           {
-            "serialAgentsNumbers": ["007"],
-            "duration": 2,
+            "serialAgentsNumbers": ["006"],
+            "duration": 29,
             "gadget": "Dagger shoe",
             "missionName": "From Russia With Love",
             "timeExpired": 100,
-            "timeIssued": 15
+            "timeIssued": 6
           },
           {
             "serialAgentsNumbers": ["006"],
             "duration": 2,
             "gadget": "X-ray Glasses",
             "missionName": "The World Is Not Enough",
-            "timeExpired": 100,
-            "timeIssued": 16
+            "timeExpired": 102,
+            "timeIssued": 6
           }
         ]
       },
@@ -57,14 +58,14 @@
             ],
             "duration": 7,
             "gadget": "Sky Hook",
-            "missionName": "Thunderball",
+            "missionName": "Thunderball2",
             "timeExpired": 15,
             "timeIssued": 3
           }
         ]
       }
     ],
-    "time": 25
+    "time": 40
   },
   "squad": [
     {
@@ -74,6 +75,10 @@
     {
       "name": "Alec Trevelyan",
       "serialNumber": "006"
+    },
+    {
+      "name": "SuperMan",
+      "serialNumber": "005"
     }
   ]
 }

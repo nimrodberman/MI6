@@ -25,8 +25,6 @@ public class Moneypenny extends Subscriber {
 
 	@Override
 	protected void initialize() {
-
-
 		Callback<AgentsAvailableEvent> agentavailable = (AgentsAvailableEvent t) -> {
 			// update the report
 			Report report = t.getReport();
@@ -52,23 +50,10 @@ public class Moneypenny extends Subscriber {
 			}
 		};
 
-		Callback<AgentActiveEvent> activeagent = (AgentActiveEvent t) ->{
-			squad.sendAgents(t.getList(),t.getTime());
-			complete(t,null);
-
-		};
-
-		Callback<ReleaseAgentsEvent> realseagents = (ReleaseAgentsEvent t) ->{
-			squad.releaseAgents(t.getList());
-			complete(t,null);
-		};
-
 		Callback<EndActivities> endActivitiesCallback = (EndActivities t) -> {
 			this.terminate();
 		};
 		this.subscribeBroadcast(EndActivities.class, endActivitiesCallback);
-		this.subscribeEvent(ReleaseAgentsEvent.class, realseagents);
-		this.subscribeEvent(AgentActiveEvent.class, activeagent);
 		this.subscribeEvent(AgentsAvailableEvent.class, agentavailable);
 	}
 

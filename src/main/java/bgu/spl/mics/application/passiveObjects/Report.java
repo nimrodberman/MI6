@@ -101,9 +101,9 @@ public class Report {
 	/**
 	 * Sets the agents names.
 	 */
-	public void setAgentsNames(List<String> agentsNames) {
+	public void setAgentsNames(List<String> agentsnames) {
 		synchronized (agentsSerialNumbers) {
-			agentsNames.addAll(agentsNames);
+			agentsNames.addAll(agentsnames);
 		}
 
 	}
