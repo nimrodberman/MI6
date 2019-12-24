@@ -12,13 +12,11 @@ import java.util.concurrent.Semaphore;
  * You may add ONLY private fields and methods to this class.
  */
 public class Squad {
-	private static Squad instance = new Squad();
-	private Semaphore sem = new Semaphore(10,true);
-
-
-
 	//____________fields_____________
 	private Map<String, Agent> agents;
+	private static Squad instance = new Squad();
+	private Semaphore sem = new Semaphore(3,true);
+
 
 
 	//_________constructors__________
@@ -115,7 +113,9 @@ public class Squad {
 	public List<String> getAgentsNames(List<String> serials){
 		List <String> out = new ArrayList<String> ();
 		for (String s: serials) {
-			out.add(this.agents.get(s).getName());
+			if(this.agents.get(s) != null)
+				out.add(this.agents.get(s).getName());
+			else{return null;}
 		}
 		return out;
 	}

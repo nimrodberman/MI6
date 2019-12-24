@@ -2,6 +2,7 @@ package bgu.spl.mics.application.subscribers;
 
 import bgu.spl.mics.*;
 import bgu.spl.mics.application.EndActivities;
+import bgu.spl.mics.application.passiveObjects.BureaucracyPapers;
 import bgu.spl.mics.application.passiveObjects.Diary;
 import bgu.spl.mics.application.passiveObjects.Report;
 
@@ -23,6 +24,7 @@ public class M extends Subscriber {
 
 	}
 
+
 	@Override
 	protected void initialize() {
 
@@ -35,29 +37,40 @@ public class M extends Subscriber {
 			System.out.println("M " + serial + " running the mission");
 			diary.incrementTotal();
 			Report report = new Report();
+			// M update her part in the report
 			report.setTimeCreated(time);
+			report.setM(serial);
+			report.setMissionName(s.getMissionInfo().getMissionName());
+			report.setAgentsSerialNumbersNumber(s.getMissionInfo().getSerialAgentsNumbers());
+			report.setGadgetName(s.getMissionInfo().getGadget());
+			report.setTimeIssued(s.getMissionInfo().getTimeIssued());
 
-
-			Future<Report> future = getSimplePublisher().sendEvent(new AgentsAvailableEvent(s.getMissionInfo().getSerialAgentsNumbers(), report));
+			BureaucracyPapers b = new BureaucracyPapers();
+			Future<BureaucracyPapers> future = getSimplePublisher().sendEvent(new AgentsAvailableEvent(s.getMissionInfo().getSerialAgentsNumbers(), b));
 
 			// wait until agents are available
-			Report report2 = future.get();
-
+			BureaucracyPapers report2 = new BureaucracyPapers();
+			// check if there is available MP to manage the agents
+			if(future != null)
+				report2 = future.get();
 
 			//get the report from Q
-			Future<Report> future1 = getSimplePublisher().sendEvent(new GadgetAvailableEvent(s.getMissionInfo().getGadget(),report2));
-			Report report3 = future1.get();
+			BureaucracyPapers report3 = new BureaucracyPapers();
+			//check if agents exist and if there is available MP before create new future
+			if (future != null && report2.isAgentsExists()) {
+				Future<BureaucracyPapers> future1 = getSimplePublisher().sendEvent(new GadgetAvailableEvent(s.getMissionInfo().getGadget(), report2));
+				// check if there is Q available
+				if(future1 != null)
+					report3 = future1.get();
+			}
 
 			// if all conditions are valid send the mission
 			if(report3.isGadetIsExist() && report3.isAgentsExists() && report3.getQTime() <= s.getMissionInfo().getTimeExpired()){
-				// update the m details
-				report3.setM(serial);
-				report.setMissionName(s.getMissionInfo().getMissionName());
-				report3.setAgentsSerialNumbersNumber(s.getMissionInfo().getSerialAgentsNumbers());
-				report3.setGadgetName(s.getMissionInfo().getGadget());
-				report3.setTimeIssued(s.getMissionInfo().getTimeIssued());
-				report3.setTimeCreated(time);
-				diary.addReport(report3);
+				// update MP and Q details
+				report.setAgentsNames(report3.getAgentsNames());
+				report.setMoneypenny(report3.getMP());
+				report.setQTime(report3.getQTime());
+				diary.addReport(report);
 				Future t = getSimplePublisher().sendEvent(new AgentActiveEvent(s.getMissionInfo().getSerialAgentsNumbers(),s.getMissionInfo().getDuration()));
 			}
 

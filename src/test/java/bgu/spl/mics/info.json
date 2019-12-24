@@ -13,39 +13,38 @@
         "missions": [
           {
             "serialAgentsNumbers": [
-              "005",
               "006",
               "007"
             ],
             "duration": 7,
             "gadget": "Sky Hook",
-            "missionName": "Thunderball1",
+            "name": "Thunderball",
             "timeExpired": 15,
             "timeIssued": 3
           },
           {
             "serialAgentsNumbers": ["007"],
             "duration": 2,
-            "gadget": "Geiger counter",
-            "missionName": "The world is not enough",
-            "timeExpired": 108,
+            "gadget": "Dagger shoe",
+            "name": "From Russia With Love",
+            "timeExpired": 8,
             "timeIssued": 6
           },
           {
-            "serialAgentsNumbers": ["006"],
-            "duration": 29,
+            "serialAgentsNumbers": ["007"],
+            "duration": 2,
             "gadget": "Dagger shoe",
-            "missionName": "From Russia With Love",
+            "name": "From Russia With Love",
             "timeExpired": 100,
-            "timeIssued": 6
+            "timeIssued": 15
           },
           {
             "serialAgentsNumbers": ["006"],
             "duration": 2,
-            "gadget": "X-ray Glasses",
-            "missionName": "The World Is Not Enough",
-            "timeExpired": 102,
-            "timeIssued": 6
+            "gadget": "X-ray glasses",
+            "name": "The World Is Not Enough",
+            "timeExpired": 100,
+            "timeIssued": 16
           }
         ]
       },
@@ -57,15 +56,15 @@
               "006"
             ],
             "duration": 7,
-            "gadget": "Sky Hook",
-            "missionName": "Thunderball2",
+            "gadget": "Dagger shoe",
+            "name": "Thunderball",
             "timeExpired": 15,
             "timeIssued": 3
           }
         ]
       }
     ],
-    "time": 40
+    "time": 25
   },
   "squad": [
     {
@@ -75,10 +74,6 @@
     {
       "name": "Alec Trevelyan",
       "serialNumber": "006"
-    },
-    {
-      "name": "SuperMan",
-      "serialNumber": "005"
     }
   ]
 }

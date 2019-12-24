@@ -2,6 +2,7 @@ package bgu.spl.mics.application.subscribers;
 
 import bgu.spl.mics.*;
 import bgu.spl.mics.application.EndActivities;
+import bgu.spl.mics.application.passiveObjects.BureaucracyPapers;
 import bgu.spl.mics.application.passiveObjects.Inventory;
 import bgu.spl.mics.application.passiveObjects.Report;
 
@@ -31,7 +32,7 @@ public class Q extends Subscriber {
 
 
 		Callback<GadgetAvailableEvent> gadgetavailble = (GadgetAvailableEvent t) -> {
-			Report report = t.getReport();
+			BureaucracyPapers report = t.getReport();
 			report.setQTime(time);
 
 			report.setGadetIsExist(inventory.getItem(t.getGadget()));

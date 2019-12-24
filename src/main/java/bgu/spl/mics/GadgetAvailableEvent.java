@@ -1,13 +1,14 @@
 package bgu.spl.mics;
 
+import bgu.spl.mics.application.passiveObjects.BureaucracyPapers;
 import bgu.spl.mics.application.passiveObjects.Report;
 
 public class GadgetAvailableEvent implements Event {
 
     private String gadget;
-    private Report report;
+    private BureaucracyPapers report;
 
-    public GadgetAvailableEvent(String gadget, Report re)
+    public GadgetAvailableEvent(String gadget, BureaucracyPapers re)
     {
         report = re;
         this.gadget = gadget;
@@ -21,11 +22,11 @@ public class GadgetAvailableEvent implements Event {
         this.gadget = gadget;
     }
 
-    public void setReport(Report report) {
+    public void setReport(BureaucracyPapers report) {
         this.report = report;
     }
 
-    public Report getReport() {
+    public BureaucracyPapers getReport() {
         return report;
     }
 }

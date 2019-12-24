@@ -12,7 +12,7 @@ import java.util.List;
 public class MissionInfo {
 
 	//__________fields__________
-	private String missionName;
+	private String name;
 	private String gadget;
 	private int timeIssued;
 	private int timeExpired;
@@ -27,14 +27,14 @@ public class MissionInfo {
      * Sets the name of the mission.
      */
     public void setMissionName(String m) {
-        this.missionName = m;
+        this.name = m;
     }
 
 	/**
      * Retrieves the name of the mission.
      */
 	public String getMissionName() {
-		return missionName;
+		return name;
 	}
 
     /**

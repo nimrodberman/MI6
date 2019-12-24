@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -31,7 +32,7 @@ public class MI6Runner {
 
         // Upload all files
         try {
-            Reader reader = new FileReader("/users/studs/bsc/2020/bermann/Desktop/version work 2/version_19-12/MI6-nimrod_18_12/src/test/java/bgu/spl/mics/info.json");
+            Reader reader = new FileReader("/users/studs/bsc/2020/bermann/Desktop/version work 2/23.12/MI6-nimrod_23_12/src/test/java/bgu/spl/mics/info.json");
             JsonParse file = gson.fromJson(reader,JsonParse.class);
             //create a reference
 
@@ -42,6 +43,12 @@ public class MI6Runner {
             inventory.load(file.getInventory());
             squad.load(file.getSquad());
 
+            // create a list of agent serials for MoneyPenny
+            List<String> agentsformp = new LinkedList<>();
+            for (Agent a: file.getSquad()){
+                agentsformp.add(a.getSerialNumber());
+            }
+
             // upload M instances
             for (int i = 0; i < file.getServices().getM(); i++){
                 M tmp = new M(i+1);
@@ -51,12 +58,12 @@ public class MI6Runner {
             // upload MoneyPenny instances
             for (int i = 0; i < file.getServices().getMp(); i++){
                 if (i < file.getServices().getMp()/2) {
-                    Moneypenny tmp = new Moneypenny(i + 1);
+                    Moneypenny tmp = new Moneypenny(i + 1,agentsformp);
                     Thread toAdd = new Thread(tmp);
                     threadList.add(toAdd);
                 }
                 else {
-                    MoneyPennyRelease tmp = new MoneyPennyRelease(i + 1);
+                    MoneyPennyRelease tmp = new MoneyPennyRelease(i + 1,agentsformp);
                     Thread toAdd = new Thread(tmp);
                     threadList.add(toAdd);
                 }
@@ -98,7 +105,10 @@ public class MI6Runner {
         }
 
         Diary toPrint = Diary.getInstance();
-        toPrint.printToFile("Result");
+        toPrint.printToFile("Missions");
+
+        Inventory toPrint1 = Inventory.getInstance();
+        toPrint1.printToFile("Inventory");
 
 
 

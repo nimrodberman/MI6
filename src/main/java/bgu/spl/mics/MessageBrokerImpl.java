@@ -1,6 +1,8 @@
 package bgu.spl.mics;
 //import javafx.collections.transformation.SortedList;
 
+import bgu.spl.mics.application.passiveObjects.roundRubin;
+
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.BlockingQueue;
@@ -140,6 +142,10 @@ public class MessageBrokerImpl implements MessageBroker {
 					topics.get(e.getClass()).setItozero();
 				}
 			}
+		}
+		else{
+			// let the sender know that there are no threads available
+			f = null;
 		}
 		return f;
 	}

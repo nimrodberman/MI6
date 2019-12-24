@@ -2,8 +2,14 @@ package bgu.spl.mics.application.subscribers;
 
 import bgu.spl.mics.*;
 import bgu.spl.mics.application.EndActivities;
+import bgu.spl.mics.application.passiveObjects.Agent;
+import bgu.spl.mics.application.passiveObjects.BureaucracyPapers;
 import bgu.spl.mics.application.passiveObjects.Report;
 import bgu.spl.mics.application.passiveObjects.Squad;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Only this type of Subscriber can access the squad.
@@ -15,22 +21,26 @@ import bgu.spl.mics.application.passiveObjects.Squad;
 public class Moneypenny extends Subscriber {
 	private int serial;
 	private Squad squad;
+	private List<String> agentNumbersInSquad;
 
 
-	public Moneypenny(int Serial) {
+	public Moneypenny(int Serial, List<String> list) {
 		super("MoneyPenny" + Serial);
 		serial = Serial;
 		squad = Squad.getInstance();
+		agentNumbersInSquad = list;
 	}
 
 	@Override
 	protected void initialize() {
 		Callback<AgentsAvailableEvent> agentavailable = (AgentsAvailableEvent t) -> {
 			// update the report
-			Report report = t.getReport();
-			report.setMoneypenny(serial);
+			BureaucracyPapers report = t.getReport();
+			report.setMP(serial);
 			// set the serial number of each agent
-			report.setAgentsNames(squad.getAgentsNames(t.getAgents()));
+			if(squad.getAgentsNames(t.getAgents()) != null)
+				report.setAgentsNames(squad.getAgentsNames(t.getAgents()));
+			else{report.setAgentsNames(new LinkedList<>());}
 
 			//check for agents
 			try{
@@ -51,6 +61,7 @@ public class Moneypenny extends Subscriber {
 		};
 
 		Callback<EndActivities> endActivitiesCallback = (EndActivities t) -> {
+			squad.releaseAgents(agentNumbersInSquad);
 			this.terminate();
 		};
 		this.subscribeBroadcast(EndActivities.class, endActivitiesCallback);

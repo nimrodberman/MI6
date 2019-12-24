@@ -20,8 +20,6 @@ public class Report {
 	private int timeIssued;
 	private int QTime;
 	private int timeCreated;
-	private boolean gadetIsExist;
-	private boolean agentsExists;
 
 
 
@@ -166,19 +164,5 @@ public class Report {
 		timeCreated = TimeCreated;
 	}
 
-	public void setGadetIsExist(boolean gadetIsExist) {
-		this.gadetIsExist = gadetIsExist;
-	}
 
-	public boolean isGadetIsExist() {
-		return gadetIsExist;
-	}
-
-	public boolean isAgentsExists() {
-		return agentsExists;
-	}
-
-	public void setAgentsExists(boolean agentsExists) {
-		this.agentsExists = agentsExists;
-	}
 }
