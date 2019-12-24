@@ -32,7 +32,7 @@ public class MI6Runner {
 
         // Upload all files
         try {
-            Reader reader = new FileReader("/users/studs/bsc/2020/bermann/Desktop/version work 2/23.12/MI6-nimrod_23_12 _new_ver/src/test/java/bgu/spl/mics/info.json");
+            Reader reader = new FileReader("C:\\Users\\Nimrod\\Documents\\GitHub\\MI6\\src\\test\\java\\bgu\\spl\\mics\\info.json");
             JsonParse file = gson.fromJson(reader,JsonParse.class);
             //create a reference
 
@@ -58,12 +58,12 @@ public class MI6Runner {
             // upload MoneyPenny instances
             for (int i = 0; i < file.getServices().getMp(); i++){
                 if (i < file.getServices().getMp()/2) {
-                    Moneypenny tmp = new Moneypenny(i + 1,agentsformp);
+                    Moneypenny tmp = new Moneypenny(i + 1,agentsformp,false);
                     Thread toAdd = new Thread(tmp);
                     threadList.add(toAdd);
                 }
                 else {
-                    MoneyPennyRelease tmp = new MoneyPennyRelease(i + 1,agentsformp);
+                    Moneypenny tmp = new Moneypenny(i + 1,agentsformp, true);
                     Thread toAdd = new Thread(tmp);
                     threadList.add(toAdd);
                 }

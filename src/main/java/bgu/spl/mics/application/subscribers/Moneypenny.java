@@ -2,14 +2,11 @@ package bgu.spl.mics.application.subscribers;
 
 import bgu.spl.mics.*;
 import bgu.spl.mics.application.EndActivities;
-import bgu.spl.mics.application.passiveObjects.Agent;
 import bgu.spl.mics.application.passiveObjects.BureaucracyPapers;
-import bgu.spl.mics.application.passiveObjects.Report;
 import bgu.spl.mics.application.passiveObjects.Squad;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Only this type of Subscriber can access the squad.
@@ -22,13 +19,16 @@ public class Moneypenny extends Subscriber {
 	private int serial;
 	private Squad squad;
 	private List<String> agentNumbersInSquad;
+	private boolean isrealising;
 
 
-	public Moneypenny(int Serial, List<String> list) {
+	public Moneypenny(int Serial, List<String> list,boolean is) {
 		super("MoneyPenny" + Serial);
 		serial = Serial;
 		squad = Squad.getInstance();
 		agentNumbersInSquad = list;
+		isrealising = is;
+
 	}
 
 	@Override
@@ -64,8 +64,26 @@ public class Moneypenny extends Subscriber {
 			squad.releaseAgents(agentNumbersInSquad);
 			this.terminate();
 		};
-		this.subscribeBroadcast(EndActivities.class, endActivitiesCallback);
-		this.subscribeEvent(AgentsAvailableEvent.class, agentavailable);
+		Callback<AgentActiveEvent> activeagent = (AgentActiveEvent t) ->{
+			squad.sendAgents(t.getList(),t.getTime());
+			complete(t,null);
+
+		};
+		Callback<ReleaseAgentsEvent> realseagents = (ReleaseAgentsEvent t) ->{
+			squad.releaseAgents(t.getList());
+			complete(t,null);
+		};
+
+		if(isrealising == false){
+			this.subscribeBroadcast(EndActivities.class, endActivitiesCallback);
+			this.subscribeEvent(AgentsAvailableEvent.class, agentavailable);
+		}
+		else {
+			this.subscribeBroadcast(EndActivities.class, endActivitiesCallback);
+			this.subscribeEvent(ReleaseAgentsEvent.class, realseagents);
+			this.subscribeEvent(AgentActiveEvent.class, activeagent);
+		}
+
 	}
 
 }

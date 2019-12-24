@@ -2,11 +2,9 @@ package bgu.spl.mics.application.publishers;
 
 import bgu.spl.mics.*;
 import bgu.spl.mics.application.EndActivities;
-import bgu.spl.mics.application.passiveObjects.Diary;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
 /**
  * TimeService is the global system timer There is only one instance of this Publisher.

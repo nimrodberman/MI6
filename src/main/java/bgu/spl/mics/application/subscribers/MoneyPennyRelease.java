@@ -2,11 +2,9 @@ package bgu.spl.mics.application.subscribers;
 
 import bgu.spl.mics.*;
 import bgu.spl.mics.application.EndActivities;
-import bgu.spl.mics.application.passiveObjects.Report;
 import bgu.spl.mics.application.passiveObjects.Squad;
 
 import java.util.List;
-import java.util.concurrent.Semaphore;
 
 public class MoneyPennyRelease extends Subscriber {
     private int serial;

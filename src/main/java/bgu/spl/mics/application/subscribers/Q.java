@@ -4,7 +4,6 @@ import bgu.spl.mics.*;
 import bgu.spl.mics.application.EndActivities;
 import bgu.spl.mics.application.passiveObjects.BureaucracyPapers;
 import bgu.spl.mics.application.passiveObjects.Inventory;
-import bgu.spl.mics.application.passiveObjects.Report;
 
 /**
  * Q is the only Subscriber\Publisher that has access to the {@link bgu.spl.mics.application.passiveObjects.Inventory}.

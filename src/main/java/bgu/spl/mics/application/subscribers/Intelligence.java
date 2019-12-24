@@ -4,9 +4,6 @@ import bgu.spl.mics.*;
 import bgu.spl.mics.application.EndActivities;
 import bgu.spl.mics.application.passiveObjects.MissionInfo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * A Publisher only.
  * Holds a list of Info objects and sends them
