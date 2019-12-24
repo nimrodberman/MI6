@@ -32,7 +32,7 @@ public class MI6Runner {
 
         // Upload all files
         try {
-            Reader reader = new FileReader("/users/studs/bsc/2020/bermann/Desktop/version work 2/23.12/MI6-nimrod_23_12/src/test/java/bgu/spl/mics/info.json");
+            Reader reader = new FileReader("/users/studs/bsc/2020/bermann/Desktop/version work 2/23.12/MI6-nimrod_23_12 _new_ver/src/test/java/bgu/spl/mics/info.json");
             JsonParse file = gson.fromJson(reader,JsonParse.class);
             //create a reference
 

@@ -1,16 +1,4 @@
-- making a singletone - explain the threadssafe option and how it aborting creation of new instances: implemnt on
-messegebroker, diary, squad, inventory, timeservice
-
-in messegebroker methods of adding and broadcasting - do i need to create new user if it not exist in the list like or in complete in messegebroker - do i need to add an option that the event is not exits?
- guy work?
-
-
-
 ******
 Semphore in squad - how to make it ???
-timetick - how the system works?
-in messegebroker -increase cuncourncy with syncronize only specific topics
-unregister? and termination of all threads? with MP stuck at the end
-Semaphore is working ok?
 
 
