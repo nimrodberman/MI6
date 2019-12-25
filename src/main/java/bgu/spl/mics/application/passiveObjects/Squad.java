@@ -15,7 +15,7 @@ public class Squad {
 	//____________fields_____________
 	private Map<String, Agent> agents;
 	private static Squad instance = new Squad();
-	private Semaphore sem = new Semaphore(3,true);
+	private Semaphore sem = new Semaphore(5,true);
 
 
 
