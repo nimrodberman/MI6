@@ -82,6 +82,7 @@ public class M extends Subscriber {
 		this.subscribeEvent(MissionReceivedEvent.class, missioncall);
 
 		Callback<EndActivities> endActivitiesCallback = (EndActivities t) -> {
+			getSimplePublisher().sendBroadcast(new EndActivityByM());
 			this.terminate();
 		};
 		this.subscribeBroadcast(EndActivities.class, endActivitiesCallback);

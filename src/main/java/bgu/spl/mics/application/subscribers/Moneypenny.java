@@ -60,7 +60,7 @@ public class Moneypenny extends Subscriber {
 			}
 		};
 
-		Callback<EndActivities> endActivitiesCallback = (EndActivities t) -> {
+		Callback<EndActivityByM> endActivitiesCallback = (EndActivityByM t) -> {
 			squad.releaseAgents(agentNumbersInSquad);
 			this.terminate();
 		};
@@ -75,11 +75,11 @@ public class Moneypenny extends Subscriber {
 		};
 
 		if(isrealising == false){
-			this.subscribeBroadcast(EndActivities.class, endActivitiesCallback);
+			this.subscribeBroadcast(EndActivityByM.class, endActivitiesCallback);
 			this.subscribeEvent(AgentsAvailableEvent.class, agentavailable);
 		}
 		else {
-			this.subscribeBroadcast(EndActivities.class, endActivitiesCallback);
+			this.subscribeBroadcast(EndActivityByM.class, endActivitiesCallback);
 			this.subscribeEvent(ReleaseAgentsEvent.class, realseagents);
 			this.subscribeEvent(AgentActiveEvent.class, activeagent);
 		}

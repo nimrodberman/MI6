@@ -42,7 +42,7 @@ public class roundRubin {
     }
 
     public void decrease(int m) {
-        if (m < i.get()){
+        if (m <= i.get()){
             i.decrementAndGet();
         }
     }

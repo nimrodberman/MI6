@@ -1,6 +1,7 @@
 package bgu.spl.mics;
 //import javafx.collections.transformation.SortedList;
 
+import bgu.spl.mics.application.EndActivities;
 import bgu.spl.mics.application.passiveObjects.roundRubin;
 
 import java.util.ArrayList;
@@ -112,8 +113,25 @@ public class MessageBrokerImpl implements MessageBroker {
 		if (b != null  && topics.get(b.getClass()) != null && !topics.get(b.getClass()).getList().isEmpty()){
 			synchronized (topics) {
 				ArrayList<Subscriber> toBroad = topics.get(b.getClass()).getList();
-				for (Subscriber s : toBroad) {
-				    subscribersQueue.get(s).add(b);
+				if(b.getClass() == EndActivities.class || b.getClass() == EndActivityByM.class) {
+
+					for (Subscriber s : toBroad) {
+						BlockingQueue<Message> bb = new LinkedBlockingQueue<>();
+						bb.add(b);
+						for (Message mes : subscribersQueue.get(s)){
+							bb.add(mes);
+							subscribersQueue.get(s).remove(mes);
+
+						}
+						subscribersQueue.get(s).addAll(bb);
+					}
+
+				}
+				else{
+					for (Subscriber s : toBroad) {
+						subscribersQueue.get(s).add(b);
+					}
+
 				}
 			}
 		}
@@ -132,7 +150,7 @@ public class MessageBrokerImpl implements MessageBroker {
 				// insert the bond of those objects
 				futureAndEvents.put(e,f);
 				//add the mission to one of the subscribers
-				//System.out.println(topics.get(e.getClass()).getList().get(counter.get()).getName() + " get " + e.toString() + " with index: " + counter.get());
+				System.out.println(topics.get(e.getClass()).getList().get(counter.get()).getName() + " get " + e.toString() + " with index: " + counter.get());
 				subscribersQueue.get(topics.get(e.getClass()).getList().get(counter.get())).add(e);
 				// maintain the pointer to the next subscriber in line
 				if(counter.get() < topics.get(e.getClass()).getList().size()-1){

@@ -1,5 +1,4 @@
 package bgu.spl.mics.application;
-import bgu.spl.mics.Subscriber;
 import bgu.spl.mics.application.passiveObjects.*;
 import bgu.spl.mics.application.publishers.TimeService;
 import bgu.spl.mics.application.subscribers.*;
@@ -9,15 +8,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonStreamParser;
-
-import javax.print.DocFlavor;
 import java.io.FileReader;
-import java.io.IOException;
 import java.io.Reader;
 
 
@@ -32,7 +23,7 @@ public class MI6Runner {
 
         // Upload all files
         try {
-            Reader reader = new FileReader("C:\\Users\\Nimrod\\Documents\\GitHub\\MI6\\src\\test\\java\\bgu\\spl\\mics\\info.json");
+            Reader reader = new FileReader("C:\\Users\\Nimrod\\Desktop\\work2_2612\\src\\test\\java\\bgu\\spl\\mics\\info.json");
             JsonParse file = gson.fromJson(reader,JsonParse.class);
             //create a reference
 
